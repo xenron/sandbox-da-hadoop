@@ -1,0 +1,16 @@
+Hadoop Installation
+
+Let us untar file in /opt directory and change the ownership of that directory to 'hadmin' user.
+root:~# cd /opt
+root:~# tar -xzvf hadoop-2.6.0.tar.gz
+root:~# chown -R hadmin:hadmin hadoop-2.6.0/
+
+Now let us login as 'hadmin' user and set the environment variables in .bashrc file.
+hadmin:~$ vi ~/.bashrc
+###Configuration for Java###
+JAVA_HOME=/usr/java/jdk1.8.0_25/
+export PATH=$PATH:$JAVA_HOME/bin
+
+###Configuration for Hadoop###
+HADOOP_PREFIX=/opt/hadoop-2.6.0/
+export PATH=$PATH:$HADOOP_PREFIX/bin:$HADOOP_PREFIX/sbin

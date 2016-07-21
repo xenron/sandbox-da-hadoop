@@ -1,0 +1,14 @@
+Password Less SSH Authentication
+
+hadmin@ha-namenode01:~$ ssh-keygen -t rsa
+hadmin@ha-namenode01:~$ ssh-copy-id -i ~/.ssh/id_rsa.pub hadmin@ha-namenode01
+hadmin@ha-namenode01:~$ ssh-copy-id -i ~/.ssh/id_rsa.pub hadmin@ha-namenode02
+hadmin@ha-namenode01:~$ ssh-copy-id -i ~/.ssh/id_rsa.pub hadmin@ha-namenode03
+hadmin@ha-namenode01:~$ ssh-copy-id -i ~/.ssh/id_rsa.pub hadmin@ha-datanode01 
+hadmin@ha-namenode01:~$ ssh-copy-id -i ~/.ssh/id_rsa.pub hadmin@ha-datanode02
+
+hadmin:~$ ssh ha-namenode01
+hadmin:~$ ssh ha-namenode02
+hadmin:~$ ssh ha-namenode03
+hadmin:~$ ssh ha-datanode01
+hadmin:~$ ssh ha-datanode01

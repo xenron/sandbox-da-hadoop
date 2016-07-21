@@ -1,0 +1,104 @@
+Hadoop Configuration for Automatic Failover
+
+-- Following changes needs to be done in hadoop-env.sh file
+
+hadmin:~$ vi /opt/hadoop-2.6.0/etc/hadoop/hadoop-env.sh
+
+export JAVA_HOME=/opt/jdk1.7.0_30
+export HADOOP_LOG_DIR=/var/log/hadoop/
+
+Let us create a directory for logs as specified in hadoop-env.sh file with required 'hadmin' user permissions.
+root:~# mkdir /var/log/hadoop
+root:~# chown -R hadmin:hadoop /var/log/hadoop
+
+Let us configure Namenodes, Datanodes and client used in our environment i.e.: ha-namenode01, ha-namenode02, ha-namenode03, ha-datanode01, ha-datanode02, ha-client
+hadmin:~$ vi /opt/hadoop-2.6.0/etc/hadoop/core-site.xml
+
+<configuration>
+ <property>
+  <name>fs.default.name</name>
+  <value>hdfs://haauto</value>
+ </property>
+
+</configuration>
+
+Following changes needs to be done in Hdfs-site.xml file
+Let us configure Namenodes, Datanodes and client used in our environment i.e.: ha-namenode01, ha-namenode02, ha-namenode03, ha-datanode01, ha-datanode02, ha-client
+<configuration>
+ <property>
+  <name>dfs.replication</name>
+  <value>2</value>
+ </property>
+ <property>
+  <name>dfs.name.dir</name>
+  <value>file:///hdfs/name</value>
+ </property>
+ <property>
+  <name>dfs.data.dir</name>
+  <value>file:///hdfs/data</value>
+ </property>
+ <property>
+  <name>dfs.permissions</name>
+  <value>false</value>
+ </property>
+ <property>
+  <name>dfs.nameservices</name>
+  <value>haauto</value>
+ </property>
+ <property>
+  <name>dfs.ha.namenodes.haauto</name>
+  <value>namenode01,namenode02</value>
+ </property>
+ <property>
+  <name>dfs.namenode.rpc-address.haauto.namenode01</name>
+  <value>ha-namenode01:8020</value>
+ </property>
+ <property>
+  <name>dfs.namenode.http-address.haauto.namenode01</name>
+  <value>ha-namenode01:50070</value>
+ </property>
+ <property>
+  <name>dfs.namenode.rpc-address.haauto.namenode02</name>
+  <value>ha-namenode02:8020</value>
+ </property>
+ <property>
+  <name>dfs.namenode.http-address.haauto.namenode02</name>
+  <value>ha-namenode02:50070</value>
+ </property>
+ <property>
+  <name>dfs.namenode.shared.edits.dir</name>
+  <value>file:///mnt/</value>
+ </property>
+ <property>
+  <name>dfs.ha.fencing.methods</name>
+  <value>sshfence</value>
+ </property>
+ <property>
+  <name>dfs.ha.fencing.ssh.private-key-files</name>
+  <value>/home/hadmin/.ssh/id_rsa</value>
+ </property>
+ <property>
+  <name>dfs.ha.automatic-failover.enabled.haauto</name>
+  <value>true</value>
+ </property>
+ <property>
+   <name>ha.zookeeper.quorum</name>
+   <value>ha-namenode01.hadoop.lab:2181,ha-namenode02.hadoop.lab:2181,ha-namenode03.hadoop.lab:2181</value>
+ </property>
+</configuration>
+
+Let us quickly go through checklist mentioned below.:
+1.	Replication factor is set to '2' as we have two data nodes.
+2.	Create directory /hdfs/name in all the name nodes with required 'hadmin' required priveleges.
+root:~# mkdir -p /hdfs/name
+root:~# chown -R hadmin:hadoop /hdfs/name
+3.	Create directory /hdfs/data in all data nodes with required 'hadmin' required permissions.
+root:~# mkdir -p /hdfs/data
+root:~# chown -R hadmin:hadoop /hdfs/data
+4.	In ha-client host add the below property to hdfs-site.xml file.
+<property>
+ <name>dfs.client.failover.proxy.provider.haauto</name>
+ <value>org.apache.hadoop.hdfs.server.namenode.ha.ConfiguredFailoverProxyProvider</value>
+</property>
+5.	For enabling automatic-failover for the nameservice-id 'haauto' by setting the property 'dfs.ha.automatic-failover.enabled.haauto' to 'true'.
+

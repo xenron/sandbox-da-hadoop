@@ -1,0 +1,16 @@
+Zookeeper Installation
+-- Let us now create a zoo.cfg file which would reside in conf directory and do required modifications as mentioned below.
+
+hadmin~$ vi /opt/zookeeper-3.4.6/conf/zoo.cfg
+tickTime=2000
+dataDir=/opt/Data
+clientPort=2181
+initLimit=5
+syncLimit=2
+server.1=ha-namenode01:2888:3888
+server.2=ha-namenode02:2888:3888
+server.3=ha-namenode03:2888:3888
+
+-- Add the executable path to bashrc file of all name nodes.
+hadmin~$ vi ~/.bashrc
+export PATH=$PATH:/opt/zookeeper-3.4.6/bin

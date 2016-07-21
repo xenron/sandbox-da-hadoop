@@ -1,0 +1,15 @@
+Point HBase root directory to backup location
+
+Replace hbase.rootdir in the hbase-site.xml with new location of directory from backup location where we need HBase to store data. 
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
+<configuration>
+<property>
+<name>hbase.rootdir</name>
+<value>file:///home/hduser/HBASE/hbase</value>
+</property>
+<property>
+<name>hbase.zookeeper.property.dataDir</name>
+<value>/home/hduser/HBASE/zookeeper</value>
+</property>
+</configuration>

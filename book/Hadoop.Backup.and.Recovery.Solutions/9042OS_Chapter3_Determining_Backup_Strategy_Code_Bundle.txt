@@ -1,0 +1,25 @@
+Host Failure - Page 5
+hadoop dfsadmin -report
+
+How Hadoop handles slow-running tasks - Page 9
+Public void progress() ;
+
+Data Loss or Corruption - Page 11
+hadoop namenode -importCheckpoint
+
+Hadoop's skip mode - Page 13
+mapred.skip.attempts.to.start.skipping=2
+
+mapred.skip.map.max.skip.records=1 
+#only skip the bad record
+
+mapred.skip.map.max.skip.records=0 
+#don’t go into skip mode
+
+mapred.skip.map.max.skip.records=Long.MAX_VALUE 
+#don’t try to narrow
+
+File system check (fsck) - Page 16
+hadoop fsck / | egrep -v '^\.+$' | grep -v replica
+
+hadoop fs -rm /path/to/file/with/permanently/missing/blocks
