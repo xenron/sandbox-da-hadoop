@@ -1,0 +1,25 @@
+<?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
+<configuration>
+	<property>
+		<name>mapred.job.tracker</name>
+		<value>node1.hcluster:8021</value>
+		<description>
+			This property defines the address at which the jobtracker service runs.
+		</description>
+	</property>
+	<property>
+		<name>mapred.job.tracker.http.address</name>
+		<value>0.0.0.0:50030</value>
+		<description>
+			This property defines HTTP address for jobtracker web user interface.
+		</description>
+	</property>
+	<property>
+		<name>mapred.reduce.tasks</name>
+		<value>4</value>
+		<description>
+			This property defines the number of reduce tasks that can run on the cluster.
+		</description>
+	</property>
+</configuration>
+

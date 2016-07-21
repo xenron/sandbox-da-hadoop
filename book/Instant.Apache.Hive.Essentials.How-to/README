@@ -1,0 +1,28 @@
+This directory contains the data files and code for all recipes in the book.
+
+Generally, the hql files can be executed by Hive using the '-f' flag.  Using the verbose '-v' flag is also recommended.
+
+For example,
+
+  $ hive -v -f 01_tables_and_queries.hql
+
+The 03_*.hql files are auxiliary files to the 03_using_hive_noninteractively.sh script to illustrate the usage of Hive from the command line.
+
+The 07_using_static_partitions.sh file should be run before executing 07_using_static_partitions.hql to put the required data files in HDFS.
+
+The compile.sh script will compile and package the user code in this directory and should be run before executing the code for scripts 06 or 11-14.
+
+Please make sure that the *.rb files are executable prior to executing 10_adding_custom_logic_with_streaming.hql.
+
+All files should be executed from this directory.
+
+Data files are located in the data subdirectory.
+
+The original source of the olympics data is:
+
+Google, Freebase Data Dumps, http://download.freebase.com/datadumps/, December 28, 2012.
+
+This data is licensed under the Creative Commons Attribution License (CC-BY).
+
+http://www.freebase.com/policies/attribution
+http://creativecommons.org/licenses/by/2.5/

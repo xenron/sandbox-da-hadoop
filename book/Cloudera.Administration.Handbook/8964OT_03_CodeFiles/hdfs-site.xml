@@ -1,0 +1,32 @@
+<?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
+<configuration>
+  <property>
+    <name>dfs.namenode.servicerpc-address</name>
+    <value>node1.hcluster:8022</value>
+    <description>
+      This is the RPC address for the namenode. This address is used by services like the datanodes to connect to the namenode.
+    </description>
+  </property>  
+  <property>
+    <name>dfs.namenode.http-address</name>
+    <value>node1.hcluster:50070</value>
+    <description>
+      This is the HTTP address for the namenode web user interface. 
+    </description>
+  </property>
+  <property>
+    <name>dfs.replication</name>
+    <value>3</value>
+    <description>
+      This property defines the replication factor of the data blocks in HDFS.
+    </description>
+  </property>
+  <property>
+    <name>dfs.blocksize</name>
+    <value>134217728</value>
+    <description>
+      This property defines block size for files in HDFS (bytes).
+    </description>
+  </property>
+</configuration>
+
