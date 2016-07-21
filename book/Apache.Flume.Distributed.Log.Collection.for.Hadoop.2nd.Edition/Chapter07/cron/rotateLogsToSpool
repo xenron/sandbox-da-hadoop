@@ -1,0 +1,2 @@
+# Move files to spool directory every 5 minutes
+*/5 * * * * root /usr/sbin/logrotate -f /home/ec2-user/accessRotate.conf
