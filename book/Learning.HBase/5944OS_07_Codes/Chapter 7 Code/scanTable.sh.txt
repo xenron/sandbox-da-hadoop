@@ -1,0 +1,6 @@
+#!/bin/bash
+ TableToScan=$1
+RowStart=$2
+RowEnd=$3
+exec hbase shell <<EOF scan "${TableToScan}", {RowStart => "${RowStart}", RowEnd => "${RowEnd}"}
+EOF

@@ -1,0 +1,6 @@
+Configuration config = HBaseConfiguration.create();
+HTable tableObject = new HTable(config, "tableObjectnametoreadfrom");
+Get get = new Get(Bytes.toBytes("RowID"));
+Result result = tableObject.get(get);
+byte[] nameVal= result.getValue(Bytes.toBytes("details"), Bytes.toBytes("name"));
+System.out.println("Name : " + Bytes.toString(nameVal));

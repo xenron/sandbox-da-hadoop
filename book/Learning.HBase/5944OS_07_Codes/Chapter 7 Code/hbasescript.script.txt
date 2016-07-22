@@ -1,0 +1,4 @@
+create ‘table’,’data’,
+for i in for i in '0'..'9' do for j in '0'..'9' do \
+for k in '0'..'9' do put 'table', "row-#{i}#{j}#{k}", \
+"data:column#{j}#{k}", "name#{j}#{k}" end end end

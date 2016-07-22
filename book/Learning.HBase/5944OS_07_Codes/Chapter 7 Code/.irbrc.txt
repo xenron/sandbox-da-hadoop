@@ -1,0 +1,24 @@
+#Clear HBase shell command
+def clear
+  system('clear')
+end
+
+#Enable history in hbase shell
+require "irb/ext/save-history"
+#No. of commands to be saved. 50 here
+IRB.conf[:SAVE_HISTORY] = 50
+# The location to save the history file
+IRB.conf[:HISTORY_FILE] = "#{ENV['HOME']}/.irb-save-history"
+
+#List given HDFS path from hbase shell
+def ls(path)
+  directory="/"+path
+  system("<hadoop home path>/hadoop fs -ls #{directory}")
+end
+
+Kernel.at_exit do
+  IRB.conf[:AT_EXIT].each do |i|
+    i.call
+  end
+
+end

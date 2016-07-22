@@ -1,0 +1,55 @@
+public  void addOneRecordToTable(String tableObjName, String rowKey,
+String colFamName, String columnName, String data) throws Exception
+{
+    try
+    {
+        HTable tableObj = new HTable(configurationObj, tableObjName);
+        Put put = new Put(Bytes.toBytes(rowKey));
+        put.add(Bytes.toBytes(colFamName), Bytes.toBytes(columnName), Bytes
+        .toBytes(data));
+        tableObj.put(put);
+    }
+    catch (IOException exception)
+    {
+        exception.printStackTrace();
+    }
+}
+public  void delRecordFromTable(String tableObjName, String rowKey)
+throws IOException
+{
+    HTable tableObj = new HTable(configurationObj, tableObjName);
+    List<Delete>  list = new ArrayList<Delete>;
+    Delete delObj = new Delete(rowKey.getBytes());
+    list.add(delObj);
+    tableObj.delete(list);
+}
+public  void getSingleRecordFromTable (String tableObjName, String rowKey) throws IOException
+{
+    HTable tableObj = new HTable(configurationObj, tableObjName);
+    Get get = new Get(rowKey.getBytes());
+    Result resultSet = tableObj.get(get);
+    for(KeyValue keyVal : resultSet.raw())
+    {
+        System.out.println(new String(keyValue.getValue()));
+    }
+}
+public  void readAllRecordFromTable (String tableObjName)
+{
+    try
+    {
+        HTable tableObj = new HTable(configurationObj, tableObjName);
+        Scan s = new Scan();
+        ResultScanner resultScanerObj = tableObj.getScanner(s);
+        for(Result resultObj:resultScanerObj)
+        {
+            for(KeyValue keyValue : resultObj.raw())
+            {
+                System.out.println(new String(keyValue.getQualifier()) + " "+keyValue.getFamily() + ":"+keyValue.getRow()+ " :"+keyValue.getValue()+":"+keyValue.getTimestamp());
+            }
+        }
+    }
+    catch (IOException exception)
+    {
+        exception.printStackTrace();
+    }
+}
