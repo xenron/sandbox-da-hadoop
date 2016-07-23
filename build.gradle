@@ -83,11 +83,19 @@ dependencies {
     compile 'org.hamcrest:hamcrest-all:1.1'
     compile 'junit:junit:4.8.1'
     compile 'org.mockito:mockito-all:1.8.5'
-    compile 'org.apache.hadoop:hadoop-common:2.7.2'
-    compile 'org.apache.hadoop:hadoop-core:1.2.1'
-    // compile 'com.typesafe.akka:akka-actor_2.11:2.4.4'
-    // compile 'com.typesafe.akka:akka-remote_2.11:2.4.4'
-    // compile 'org.neuroph:neuroph-core:2.8'
+
+    // compile('org.apache.hadoop:hadoop-auth:2.7.2') {
+    //     // excluding a particular transitive dependency:
+    //     // exclude module: 'cglib' //by artifact name
+    //     // exclude group: 'org.jmock' //by group
+    //     exclude group: 'org.slf4j', module: 'slf4j-log4j12'
+    //     exclude group: 'org.apache.hadoop', module: 'hadoop-core' //by both name and group
+    // }
+    // compile 'org.apache.hadoop:hadoop-core:1.2.1'
+    compile 'org.apache.hadoop:hadoop-auth:2.6.4'
+    compile 'org.apache.hadoop:hadoop-client:2.6.4'
+    compile 'org.apache.hadoop:hadoop-common:2.6.4'
+    compile 'org.apache.hadoop:hadoop-hdfs:2.6.4'
 }
 
 // Embeded Jetty for testing
