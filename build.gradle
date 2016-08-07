@@ -84,6 +84,8 @@ dependencies {
     compile 'junit:junit:4.8.1'
     compile 'org.mockito:mockito-all:1.8.5'
 
+    compile group: 'com.linkedin.datafu', name: 'datafu', version: '1.2.0'
+
     // compile('org.apache.hadoop:hadoop-auth:2.7.2') {
     //     // excluding a particular transitive dependency:
     //     // exclude module: 'cglib' //by artifact name
