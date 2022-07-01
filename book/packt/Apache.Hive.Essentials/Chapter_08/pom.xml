@@ -13,7 +13,7 @@
   <url>http://maven.apache.org</url>
 
   <properties>
-    <hadoop.version>2.5.0-mr1-cdh5.2.1</hadoop.version>
+    <hadoop.version>2.7.0</hadoop.version>
   </properties>
 
   <build>
