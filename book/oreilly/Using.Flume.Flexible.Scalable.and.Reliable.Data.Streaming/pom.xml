@@ -17,7 +17,7 @@
   <name>Companion code for the Using Flume book</name>
 
   <properties>
-    <flume.version>1.6.0</flume.version>
+    <flume.version>1.10.1</flume.version>
   </properties>
 
   <build>
